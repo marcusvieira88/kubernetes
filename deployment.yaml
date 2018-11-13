@@ -1,0 +1,15 @@
+apiVersion:apps/v1beta1
+kind: Deployment
+metadata:
+  name: web-application-deployment
+spec:
+  template:
+    metadata:
+      labels:
+        name: web-application-pod
+      spec:
+        containers:
+          - name: container-web-application
+            image: marcus88/node
+            ports:
+              - containerPort:80

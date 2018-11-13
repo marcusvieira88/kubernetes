@@ -1,0 +1,30 @@
+apiVersion: app/v1beta1
+kind: StatefulSet # component that can save the data in a valume and manage the Pods status
+metadata:
+  name: statefulset-mysql
+spec:
+  serviceName: db # service responsible for load balance the database connections
+  templates:
+    metadata:
+      labels:
+        name: mysql
+    spec:
+      containers:
+        - name: container-db
+          image: mysql
+          ports:
+            - containerPort:3306
+          env:
+            - name: MYSQL_DATABASE
+              value: "loja"
+            - name: MYSQL_USER
+              value: "root"
+            - name: MYSQL_ALLOW_EMPTY_PASSWORD
+              value: "1"
+          volumesMounts:
+            - name: volume-mysql
+              mountPath: /var/lib/mysql
+        volumes:
+          - name: volume-mysql
+          persistentVolumeClaim:
+            clainName: configuration-mysql

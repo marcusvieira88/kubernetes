@@ -1,0 +1,16 @@
+version:"3.0"
+services:
+  db:
+    image:"mysql"
+    environment:
+      - MYSQL_DATABASE=LOJA
+      - MYSQL_USER=root
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+    volumes:
+      - /home/marcus/Documents/valume_mysql : /val/lib/mysql
+  web:
+    image: marcus88/node
+    ports:
+      - 8080:80 # 80 is the port that was EXPOSE in the marcus88/node image and the 8080 the machine port
+    depends-on:
+      - db # db meeds to start first than web    
