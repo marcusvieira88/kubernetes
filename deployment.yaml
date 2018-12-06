@@ -10,6 +10,6 @@ spec:
       spec:
         containers:
           - name: container-web-application
-            image: marcus88/node
+            image: marcus88/java8-graphql
             ports:
-              - containerPort:80
+              - containerPort:8080
