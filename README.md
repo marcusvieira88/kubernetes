@@ -20,6 +20,8 @@ MINICUBE - Create a virtualized environment
 ```
 minicube start
 
+minikube dashboard // access the dashboard for scale and manage the pods
+
 kubectl create -f web-application-pod.yaml  //creates the pod
 
 kubectl create -f deployment.yaml  // creates the deployment environment, that manages the pods status
@@ -36,7 +38,9 @@ kubectl create -f volume-db-permissions.yaml // manages the permissions to write
 
 kubectl get pods // shows all pods 
 
-kubectl service service-web-application -- url // gets the service URL for access the application
+kubectl describe pods web-application-deployment-7d58bbbdd-b56z7 | grep IP // you can get the pod IP, but you can only access the pods by Service.
+
+kubectl service service-web-application -- url // gets the service URL for ACCESS the application
 
 kubectl delete pods web-application-pod-0 // deletes the pod
 
